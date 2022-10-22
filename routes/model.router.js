@@ -6,3 +6,5 @@ const modelController = require('../controllers/mlmodel.controller');
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 router.post('/color', upload.single('image'), modelController.getColor);
+
+module.exports = router
