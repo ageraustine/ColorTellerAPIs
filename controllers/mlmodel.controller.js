@@ -9,7 +9,8 @@ class MlModelController{
         const imageBuffer = req.file.buffer;
         const model = await loadModel();
         const imageArray = await preprocess(imageBuffer);
-        const predictions = await model.predict(imageArray);
+        let predictions = model.predict(imageArray);
+        predictions = await predictions.array();
         const color = decodePrediction(predictions[0]);
         res.status(200).json({"color":color});
       }
